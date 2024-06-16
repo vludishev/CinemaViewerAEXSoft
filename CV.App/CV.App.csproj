@@ -1,0 +1,161 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios;net8.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType Condition="'$(TargetFramework)' != 'net8.0'">Exe</OutputType>
+		<RootNamespace>CV.App</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>CV.App</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.CV.App</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <MtouchLink>SdkOnly</MtouchLink>
+	  <MtouchUseLlvm>False</MtouchUseLlvm>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	  <MtouchUseLlvm>False</MtouchUseLlvm>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\star_rating.svg" />
+		<MauiImage Update="Resources\Images\action.jpg" />
+		<MauiImage Update="Resources\Images\american_dad_poster.jpg" />
+		<MauiImage Update="Resources\Images\american_dad_ss1.jpg" />
+		<MauiImage Update="Resources\Images\american_dad_ss2.jpg" />
+		<MauiImage Update="Resources\Images\american_dad_ss3.jpg" />
+		<MauiImage Update="Resources\Images\animation.jpg" />
+		<MauiImage Update="Resources\Images\comedy.jpg" />
+		<MauiImage Update="Resources\Images\dawn_of_the_dead_poster.jpg" />
+		<MauiImage Update="Resources\Images\dawn_of_the_dead_ss1.jpg" />
+		<MauiImage Update="Resources\Images\dawn_of_the_dead_ss2.jpg" />
+		<MauiImage Update="Resources\Images\drama.jpg" />
+		<MauiImage Update="Resources\Images\horror.jpg" />
+		<MauiImage Update="Resources\Images\inna_korobkina.jpg" />
+		<MauiImage Update="Resources\Images\josefine_frida_pettersen.jpg" />
+		<MauiImage Update="Resources\Images\michael_kelly.jpg" />
+		<MauiImage Update="Resources\Images\romance.jpg" />
+		<MauiImage Update="Resources\Images\sarah_polley.jpg" />
+		<MauiImage Update="Resources\Images\scam_poster.jpg" />
+		<MauiImage Update="Resources\Images\scott_grimes.jpg" />
+		<MauiImage Update="Resources\Images\seth_macFarlane.jpg" />
+		<MauiImage Update="Resources\Images\skam_poster.jpg" />
+		<MauiImage Update="Resources\Images\skam_ss1.jpg" />
+		<MauiImage Update="Resources\Images\skam_ss2.jpg" />
+		<MauiImage Update="Resources\Images\skam_ss3.png" />
+		<MauiImage Update="Resources\Images\star_rating.svg" />
+		<MauiImage Update="Resources\Images\thomas_hayes.jpg" />
+		<MauiImage Update="Resources\Images\ulrikke_falch.jpg" />
+		<MauiImage Update="Resources\Images\wendy_schaal.jpg" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\action.jpg" />
+	  <None Remove="Resources\Images\american_dad_poster.jpg" />
+	  <None Remove="Resources\Images\american_dad_ss1.jpg" />
+	  <None Remove="Resources\Images\american_dad_ss2.jpg" />
+	  <None Remove="Resources\Images\american_dad_ss3.jpg" />
+	  <None Remove="Resources\Images\animation.jpg" />
+	  <None Remove="Resources\Images\comedy.jpg" />
+	  <None Remove="Resources\Images\dawn_of_the_dead_poster.jpg" />
+	  <None Remove="Resources\Images\dawn_of_the_dead_ss1.jpg" />
+	  <None Remove="Resources\Images\dawn_of_the_dead_ss2.jpg" />
+	  <None Remove="Resources\Images\drama.jpg" />
+	  <None Remove="Resources\Images\Genres\action.jpg" />
+	  <None Remove="Resources\Images\Genres\animation.jpg" />
+	  <None Remove="Resources\Images\Genres\comedy.jpg" />
+	  <None Remove="Resources\Images\Genres\drama.jpg" />
+	  <None Remove="Resources\Images\Genres\horror.jpg" />
+	  <None Remove="Resources\Images\Genres\romance.jpg" />
+	  <None Remove="Resources\Images\horror.jpg" />
+	  <None Remove="Resources\Images\inna_korobkina.jpg" />
+	  <None Remove="Resources\Images\josefine_frida_pettersen.jpg" />
+	  <None Remove="Resources\Images\michael_kelly.jpg" />
+	  <None Remove="Resources\Images\romance.jpg" />
+	  <None Remove="Resources\Images\sarah_polley.jpg" />
+	  <None Remove="Resources\Images\scam_poster.jpg" />
+	  <None Remove="Resources\Images\scott_grimes.jpg" />
+	  <None Remove="Resources\Images\seth_macFarlane.jpg" />
+	  <None Remove="Resources\Images\skam_poster.jpg" />
+	  <None Remove="Resources\Images\skam_ss1.jpg" />
+	  <None Remove="Resources\Images\skam_ss2.jpg" />
+	  <None Remove="Resources\Images\skam_ss3.png" />
+	  <None Remove="Resources\Images\star_rating.svg" />
+	  <None Remove="Resources\Images\thomas_hayes.jpg" />
+	  <None Remove="Resources\Images\ulrikke_falch.jpg" />
+	  <None Remove="Resources\Images\wendy_schaal.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.60" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.60" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CV.Infrastructure\CV.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="AppShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\FilmDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\SearchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Pages\SearchPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	</ItemGroup>
+
+</Project>

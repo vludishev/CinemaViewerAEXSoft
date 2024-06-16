@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CV.App.Pages.FilmDetailPage"
+             Shell.BackgroundColor="#303030"
+             Shell.ForegroundColor="White"
+             Shell.TitleColor="White"
+             Title="{Binding Title}"
+             AutomationId="FilmDetailPage">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="GenresItemsTemplate">
+            <Button FontSize="15" 
+                    TextColor="White" FontAttributes="Bold" 
+                    VerticalOptions="Center" HorizontalOptions="Center"
+                    Background="#2a2a2a" Text="{Binding Genre.Name}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="ActorsItemsTemplate">
+            <Border WidthRequest="150"
+                    StrokeThickness="0" StrokeShape="RoundRectangle 10,10,10,10">
+                <Grid BackgroundColor="#2a2a2a" RowDefinitions="auto, auto">
+                    <Image Grid.Row="0" 
+                           HorizontalOptions="FillAndExpand" Aspect="AspectFill"
+                           Source="{Binding Actor.ImageUrl}" HeightRequest="250"/>
+                    <Label Margin="10, 20" Grid.Row="1" 
+                           Text="{Binding Actor.Name}" TextColor="White"/>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="ScreenshotsCarouselTemplate">
+            <Image Source="{Binding ImageUrl}"
+                   Aspect="AspectFill" HeightRequest="300"/>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <ScrollView BindingContext="{Binding Film}" Background="#191919">
+        <Grid RowDefinitions="auto, auto, auto, auto, auto, auto, auto"
+              HorizontalOptions="Fill"
+              VerticalOptions="Fill">
+            <StackLayout Grid.Row="0" Margin="5, 10" Spacing="10">
+                <Label MaxLines="5" TextColor="White"
+                       LineHeight="0.8" LineBreakMode="TailTruncation"
+                       Text="{Binding Name}" FontSize="35"/>
+                <Label FontSize="18" TextColor="#a0a0a0" 
+                       FontAttributes="Bold" Text="{Binding Year}"/>
+            </StackLayout>
+            <CarouselView Grid.Row="1" HeightRequest="250" Loop="True" Margin="0, 0, 0, 10"
+                          ItemsSource="{Binding Screenshots}"        
+                          ItemTemplate="{StaticResource ScreenshotsCarouselTemplate}"/>
+            <StackLayout Grid.Row="2" Margin="7, 0">
+                <Grid ColumnDefinitions="auto, 3*">
+                    <Image HeightRequest="170" Grid.Column="0" 
+                           HorizontalOptions="Center" VerticalOptions="Center"
+                           Source="{Binding ImageUrl}"/>
+                    <Label Margin="15, 10" HorizontalOptions="Center"
+                           VerticalOptions="Center" Grid.Column="1"
+                           Text="{Binding Description}"
+                           MaxLines="8" TextColor="White"/>
+                </Grid>
+            </StackLayout>
+            <CollectionView Grid.Row="3" Margin="7, 10" HeightRequest="40"
+                            ItemTemplate="{StaticResource GenresItemsTemplate}"
+                            ItemsSource="{Binding FilmGenres}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+            </CollectionView>
+            <BoxView Grid.Row="4" HeightRequest="2.5" Color="#373737"/>
+            <StackLayout Margin="15, 20" Grid.Row="5" 
+                         HorizontalOptions="Center" VerticalOptions="Center">
+                <Image HorizontalOptions="Center" Source="star_rating" 
+                       HeightRequest="30"/>
+                <Label HorizontalOptions="Center"
+                       Text="{Binding Rating}" TextColor="White"/>
+            </StackLayout>
+            <StackLayout Background="#212121" Grid.Row="6">
+                <Label Margin="15, 15" FontSize="20" 
+                       FontAttributes="Bold"
+                       TextColor="White" Text="Cast"/>
+                <CollectionView Margin="15, 0, 15, 30"
+                                HeightRequest="310"
+                                ItemTemplate="{StaticResource ActorsItemsTemplate}"
+                                ItemsSource="{Binding FilmActors}">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"
+                                           ItemSpacing="10" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
