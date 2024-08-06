@@ -16,7 +16,7 @@ namespace CV.App
         {
             var builder = MauiApp.CreateBuilder();
 
-            builder.Services.AddAutoMapper(typeof(MappingProfile));
+            //builder.Services.AddAutoMapper(typeof(MappingConfig));
 
             builder
                 .UseMauiApp<App>()

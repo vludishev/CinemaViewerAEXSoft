@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using CV.App.Mapper;
 using CV.App.Shared.Models;
 using CV.Infrastructure;
+using CV.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CV.App.Services
@@ -14,12 +16,10 @@ namespace CV.App.Services
     public class FilmsService : IFilmsService
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly IMapper _mapper;
 
-        public FilmsService(ApplicationDbContext dbContext, IMapper mapper)
+        public FilmsService(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
-            _mapper = mapper;
         }
 
         public async Task<FilmDto> GetFilmInfo(int filmId)
@@ -30,18 +30,17 @@ namespace CV.App.Services
             }
 
             var film = await _dbContext.Films
-               .Include(s => s.Screenshots)
-               .Include(f => f.FilmActors).ThenInclude(f => f.Actor).ThenInclude(a => a.Photos)
-               .Include(f => f.FilmGenres).ThenInclude(g => g.Genre)
-               .FirstOrDefaultAsync(x => x.Id == filmId);
+                .Include(s => s.Screenshots)
+                .Include(f => f.FilmActors).ThenInclude(f => f.Actor).ThenInclude(a => a.Photos)
+                .Include(f => f.FilmGenres).ThenInclude(g => g.Genre)
+                .SingleOrDefaultAsync(x => x.Id == filmId);
 
             if (film == null)
             {
                 return new FilmDto();
             }
 
-            var filmDto = _mapper.Map<FilmDto>(film);
-            return filmDto;
+            return film.GenFilmInfo_Map();
         }
 
         public async Task<IEnumerable<SearchResult>> GetSearchResultsAsync(string query)
