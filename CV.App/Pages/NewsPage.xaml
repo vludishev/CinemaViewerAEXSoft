@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:CV.App.Templates"
+             x:Class="CV.App.Pages.NewsPage"
+             Title="News">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="NewsPictureTemplate">
+            <Grid>
+                
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="NewsVideoTemplate">
+            
+        </DataTemplate>
+        
+        <DataTemplate x:Key="NewsTextTemplate">
+            
+        </DataTemplate>
+        
+        <DataTemplate x:Key="DefaultTemplate">
+            
+        </DataTemplate>
+
+        <controls:NewsDataTemplateSelector x:Key="NewsSelector"
+                                           NewsPicture="{StaticResource NewsPictureTemplate}"
+                                           NewsVideo="{StaticResource NewsVideoTemplate}"
+                                           NewsText="{StaticResource NewsTextTemplate}"/>
+    </ContentPage.Resources>
+    
+    <!--CollectionView Размещение внутри VerticalStackLayout 
+    может остановить прокрутку CollectionView 
+    и может ограничить количество отображаемых элементов. 
+    В этой ситуации замените VerticalStackLayout элементом Grid.-->
+    <Grid>
+        <CollectionView x:Name="NewsCW"
+                        ItemsSource="{Binding News}"
+                        ItemTemplate="{StaticResource NewsSelector}">
+        </CollectionView>
+    </Grid>
+</ContentPage>

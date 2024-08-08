@@ -44,8 +44,9 @@
         </DataTemplate>
     </ContentPage.Resources>
     <Grid BackgroundColor="#191919" RowDefinitions="auto, *">
-        <Grid Grid.Row="0" Margin="5, 10" ColumnDefinitions="*, auto">
-            <Border Grid.Column="0"
+        <Grid Grid.Row="0" Margin="5, 10" ColumnDefinitions="*">
+            
+            <Border Grid.Column="1"
                     BackgroundColor="White"
                     StrokeThickness="0"
                     StrokeShape="RoundRectangle 15,15,15,15">

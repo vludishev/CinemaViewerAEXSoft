@@ -5,20 +5,6 @@ namespace CV.App.Mapper
 {
     public static class FilmMappingExt
     {
-        private static TDestination Map<TSource, TDestination>(TSource sourceObject)
-        {
-            var destinationObject = Activator.CreateInstance<TDestination>();
-            if (sourceObject != null)
-            {
-                foreach (var sourceProperty in typeof(TSource).GetProperties())
-                {
-                    var destinationProperty = typeof(TDestination).GetProperty(sourceProperty.Name);
-                    destinationProperty?.SetValue(destinationObject, sourceProperty.GetValue(sourceObject));
-                }
-            }
-            return destinationObject;
-        }
-
         public static FilmDto GenFilmInfo_Map(this Film film)
         {
 

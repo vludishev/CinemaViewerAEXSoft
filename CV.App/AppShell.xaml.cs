@@ -18,6 +18,7 @@ public partial class AppShell : Shell
     private void RegisterRoutes()
     {
         Routes.Add(Constants.FilmDetailsRoute, typeof(FilmDetailPage));
+        Routes.Add(Constants.NewsRoute, typeof(NewsPage));
 
         foreach (var item in Routes)
         {

@@ -88,6 +88,7 @@ namespace CV.App
         {
             mauiAppBuilder.Services.AddSingleton<SearchViewModel>();
             mauiAppBuilder.Services.AddSingleton<FilmDetailViewModel>();
+            mauiAppBuilder.Services.AddSingleton<NewsViewModel>();
 
             return mauiAppBuilder;
         }
@@ -96,6 +97,7 @@ namespace CV.App
         {
             mauiAppBuilder.Services.AddSingleton<SearchPage>();
             mauiAppBuilder.Services.AddSingleton<FilmDetailPage>();
+            mauiAppBuilder.Services.AddSingleton<NewsPage>();
 
             return mauiAppBuilder;
         }
