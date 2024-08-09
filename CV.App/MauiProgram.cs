@@ -28,7 +28,8 @@ namespace CV.App
                 .RegisterServices()
                 .RegisterViewModels()
                 .RegisterViews()
-                .UseMauiCommunityToolkit();
+                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMediaElement();
 
 #if IOS
 

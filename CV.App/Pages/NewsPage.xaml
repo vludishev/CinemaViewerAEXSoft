@@ -1,43 +1,92 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:CV.App.Templates"
              x:Class="CV.App.Pages.NewsPage"
              Title="News">
 
     <ContentPage.Resources>
-        <DataTemplate x:Key="NewsPictureTemplate">
-            <Grid>
-                
-            </Grid>
+        <ResourceDictionary>
+
+            <Style x:Key="newsItemStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
+                <Setter Property="StrokeThickness" Value="0"/>
+                <Setter Property="Margin" Value="20, 10"/>
+                <Setter Property="BackgroundColor" Value="BlueViolet"/>
+            </Style>
+            <Style x:Key="headerNewsItemStyle" TargetType="Label">
+                <Setter Property="Margin" Value="5, 15"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="textNewsItemStyle" TargetType="Label">
+                <Setter Property="Margin" Value="5, 15"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="pictureStyle" TargetType="Image">
+                <Setter Property="Aspect" Value="AspectFill"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="200"/>
+            </Style>
+            <Style x:Key="mediaBorderStyle" TargetType="Border">
+                <Setter Property="StrokeShape" Value="RoundRectangle 5,5,5,5"/>
+                <Setter Property="StrokeThickness" Value="0"/>
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HeightRequest" Value="200"/>
+            </Style>
+        </ResourceDictionary>
+
+        <!--Всё, что относится к блоку с видео-->
+        <DataTemplate x:Key="VideoTemplate">
+            <Border Style="{StaticResource mediaBorderStyle}">
+                <toolkit:MediaElement Source="{Binding Uri}" />
+            </Border>
         </DataTemplate>
-        
-        <DataTemplate x:Key="NewsVideoTemplate">
-            
+        <!-- ///////////////////////////////////// -->
+
+        <!--Всё, что относится к блоку с картинками-->
+        <DataTemplate x:Key="PictureTemplate">
+            <Border Style="{StaticResource mediaBorderStyle}">
+                <Image Style="{StaticResource pictureStyle}" Source="{Binding Uri}" />
+            </Border>
         </DataTemplate>
-        
-        <DataTemplate x:Key="NewsTextTemplate">
-            
-        </DataTemplate>
-        
-        <DataTemplate x:Key="DefaultTemplate">
-            
+        <!-- ///////////////////////////////////// -->
+
+        <DataTemplate x:Key="NewsTemplate">
+            <Border Style="{StaticResource newsItemStyle}">
+                <VerticalStackLayout>
+                    <Label Style="{StaticResource headerNewsItemStyle}" Text="Film Name"/>
+                    <CollectionView ItemsLayout="VerticalGrid, 2"
+                       ItemsSource="{Binding Resources}"
+                       ItemTemplate="{StaticResource ResourceSelector}"/>
+                    <Label Style="{StaticResource textNewsItemStyle}" Text="{Binding Text}"/>
+                </VerticalStackLayout>
+            </Border>
         </DataTemplate>
 
-        <controls:NewsDataTemplateSelector x:Key="NewsSelector"
-                                           NewsPicture="{StaticResource NewsPictureTemplate}"
-                                           NewsVideo="{StaticResource NewsVideoTemplate}"
-                                           NewsText="{StaticResource NewsTextTemplate}"/>
+        <controls:ResourceDataTemplateSelector x:Key="ResourceSelector"
+                                           VideoTemplate="{StaticResource VideoTemplate}"
+                                           PictureTemplate="{StaticResource PictureTemplate}"/>
+
+     
     </ContentPage.Resources>
-    
+
     <!--CollectionView Размещение внутри VerticalStackLayout 
     может остановить прокрутку CollectionView 
     и может ограничить количество отображаемых элементов. 
     В этой ситуации замените VerticalStackLayout элементом Grid.-->
     <Grid>
-        <CollectionView x:Name="NewsCW"
+        <CollectionView Margin="10, 0" x:Name="NewsCW"
                         ItemsSource="{Binding News}"
-                        ItemTemplate="{StaticResource NewsSelector}">
+                        ItemTemplate="{StaticResource NewsTemplate}">
         </CollectionView>
     </Grid>
 </ContentPage>

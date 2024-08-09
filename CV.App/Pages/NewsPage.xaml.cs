@@ -1,11 +1,15 @@
+using CV.App.ViewModels;
+
 namespace CV.App.Pages;
 
 public partial class NewsPage : ContentPage
 {
-	public NewsPage()
+    private readonly NewsViewModel _viewModel;
+
+    public NewsPage(NewsViewModel viewModel)
 	{
 		InitializeComponent();
-	}
-
-
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+    }
 }

@@ -8,11 +8,11 @@ namespace CV.App
 {
     public partial class App : Application
     {
-        public App(SearchViewModel viewModel)
+        public App()
         {
             InitializeComponent();
 
-            MainPage = new AppShell(viewModel);
+            MainPage = new AppShell();
         }
     }
 }

@@ -5,9 +5,9 @@ namespace CV.App;
 
 public partial class AppShell : Shell
 {
-    public Dictionary<string, Type> Routes { get; private set; } = new Dictionary<string, Type>();
+    public Dictionary<string, Type> Routes { get; private set; } = [];
 
-    public AppShell(SearchViewModel viewModel)
+    public AppShell()
     {
         InitializeComponent();
 

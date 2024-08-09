@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace CV.App.Shared.TemplateModels
 {
-    public enum NewsType
+    public enum MediaType
     {
-        OnlyText,
-        WithPicture,
-        WithVideo
+        Picture,
+        Video
     }
 
-    public class News
+    public class InternetResource
     {
-        public NewsType Type { get; set; }
-        public string Picture { get; set; }
-        public string Video { get; set; }
-        public string Text { get; set; }
+        public string Uri { get; set; } = string.Empty;
+        public MediaType MediaType { get; set; }
+    }
+
+    public class NewsItem
+    {
+        public List<InternetResource> Resources { get; set; } = [];
+        public string Text { get; set; } = string.Empty;
     }
 }
