@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using CV.App.Mapper;
 using CV.App.Pages;
 using CV.App.Services;
 using CV.App.ViewModels;
@@ -22,8 +21,8 @@ namespace CV.App
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
-                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
-                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("Georgia-Regular.ttf", "GeorgiaRegular");
+                    fonts.AddFont("Georgia-Semibold.ttf", "GeorgiaSemibold");
                 })
                 .RegisterServices()
                 .RegisterViewModels()
@@ -81,6 +80,7 @@ namespace CV.App
         public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddTransient<IFilmsService, FilmsService>();
+            mauiAppBuilder.Services.AddTransient<INewsService, NewsService>();
 
             return mauiAppBuilder;
         }

@@ -1,4 +1,6 @@
-﻿using CV.App.Services;
+﻿using CV.App.APIs;
+using CV.App.APIs.Models;
+using CV.App.Services;
 using CV.App.Shared.TemplateModels;
 using System.Collections.ObjectModel;
 
@@ -6,101 +8,115 @@ namespace CV.App.ViewModels
 {
     public class NewsViewModel : BaseViewModel
     {
-        public ObservableCollection<NewsItem> News { get; } =
-        [
-            new NewsItem()
-            {
-                Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
-                " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
-            },
-            new NewsItem()
-            {
-                Resources = 
-                [
-                    new InternetResource() {
-                        MediaType = MediaType.Picture,
-                        Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Video,
-                        Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Picture,
-                        Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Video,
-                        Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    },
-                ],
-                Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
-                " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
-            },
-            new NewsItem()
-            {
-                Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
-                " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
-            },
-            new NewsItem()
-            {
-                Resources =
-                [
-                    new InternetResource() {
-                        MediaType = MediaType.Picture,
-                        Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Video,
-                        Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Picture,
-                        Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Video,
-                        Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    },
-                ],
-                Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
-                " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
-            },
-             new NewsItem()
-            {
-                Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
-                " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
-            },
-            new NewsItem()
-            {
-                Resources =
-                [
-                    new InternetResource() {
-                        MediaType = MediaType.Picture,
-                        Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Video,
-                        Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Picture,
-                        Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
-                    },
-                    new InternetResource() {
-                        MediaType = MediaType.Video,
-                        Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                    },
-                ],
-                Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
-                " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
-            },
-        ];
+        public ObservableCollection<Article> News { get; } = [];
+        //[
+        //    new NewsItem()
+        //    {
+        //        Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
+        //        " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
+        //    },
+        //    new NewsItem()
+        //    {
+        //        Resources = 
+        //        [
+        //            new InternetResource() {
+        //                MediaType = MediaType.Picture,
+        //                Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Video,
+        //                Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Picture,
+        //                Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Video,
+        //                Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        //            },
+        //        ],
+        //        Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
+        //        " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
+        //    },
+        //    new NewsItem()
+        //    {
+        //        Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
+        //        " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
+        //    },
+        //    new NewsItem()
+        //    {
+        //        Resources =
+        //        [
+        //            new InternetResource() {
+        //                MediaType = MediaType.Picture,
+        //                Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Video,
+        //                Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Picture,
+        //                Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Video,
+        //                Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        //            },
+        //        ],
+        //        Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
+        //        " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
+        //    },
+        //     new NewsItem()
+        //    {
+        //        Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
+        //        " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
+        //    },
+        //    new NewsItem()
+        //    {
+        //        Resources =
+        //        [
+        //            new InternetResource() {
+        //                MediaType = MediaType.Picture,
+        //                Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Video,
+        //                Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Picture,
+        //                Uri = "https://coop-land.ru/uploads/posts/2019-07/1562267530_1561561111_11.jpg"
+        //            },
+        //            new InternetResource() {
+        //                MediaType = MediaType.Video,
+        //                Uri = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        //            },
+        //        ],
+        //        Text = "БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ" +
+        //        " БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ БОЛЬШОЙ ТЕКСТ",
+        //    },
+        //];
 
-        private readonly IFilmsService _filmsService;
-        public NewsViewModel(IFilmsService filmsService)
+        private readonly INewsService _newsService;
+        private readonly NewsApiClient _newsApiClient;
+
+        public NewsViewModel(INewsService newsService)
         {
-            _filmsService = filmsService;
+            _newsService = newsService;
+            _newsApiClient = new NewsApiClient();
+        }
+
+        public async Task InitializeAsync()
+        {
+            //var result = await _newsService.GetFilmNews();
+            var result = await _newsApiClient.GetFilmNews();
+            News.Clear();
+            foreach (var item in result.Articles)
+            {
+                News.Add(item);
+            }
         }
     }
 }

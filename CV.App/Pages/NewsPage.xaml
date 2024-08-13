@@ -3,23 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:controls="clr-namespace:CV.App.Templates"
+             xmlns:converters="clr-namespace:CV.App.Converters"
+             xmlns:extensions="clr-namespace:CV.App.Extensions"
              x:Class="CV.App.Pages.NewsPage"
              Title="News">
 
     <ContentPage.Resources>
-        <ResourceDictionary>
+        <converters:DateTimeToFancyAgoConverter x:Key="DateTimeToFancyAgo"/>
 
+        <ResourceDictionary>
             <Style x:Key="newsItemStyle" TargetType="Border">
                 <Setter Property="StrokeShape" Value="RoundRectangle 15,15,15,15"/>
                 <Setter Property="StrokeThickness" Value="0"/>
                 <Setter Property="Margin" Value="20, 10"/>
-                <Setter Property="BackgroundColor" Value="BlueViolet"/>
+                <Setter Property="Padding" Value="20"/>
+                <Setter Property="BackgroundColor" Value="#373737"/>
             </Style>
-            <Style x:Key="headerNewsItemStyle" TargetType="Label">
-                <Setter Property="Margin" Value="5, 15"/>
-                <Setter Property="HorizontalOptions" Value="Start"/>
-                <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Style x:Key="elemNewsItemStyle" TargetType="Label">
+                <Setter Property="Margin" Value="0, 8" />
+                <Setter Property="FontSize" Value="Default" />
             </Style>
             <Style x:Key="textNewsItemStyle" TargetType="Label">
                 <Setter Property="Margin" Value="5, 15"/>
@@ -31,16 +33,16 @@
                 <Setter Property="Aspect" Value="AspectFill"/>
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HeightRequest" Value="200"/>
+                <!--<Setter Property="HeightRequest" Value="200"/>-->
             </Style>
             <Style x:Key="mediaBorderStyle" TargetType="Border">
                 <Setter Property="StrokeShape" Value="RoundRectangle 5,5,5,5"/>
                 <Setter Property="StrokeThickness" Value="0"/>
-                <Setter Property="Margin" Value="1"/>
+                <!--<Setter Property="Margin" Value="1"/>-->
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="Padding" Value="0"/>
-                <Setter Property="HeightRequest" Value="200"/>
+                <!--<Setter Property="HeightRequest" Value="200"/>-->
             </Style>
         </ResourceDictionary>
 
@@ -63,11 +65,43 @@
         <DataTemplate x:Key="NewsTemplate">
             <Border Style="{StaticResource newsItemStyle}">
                 <VerticalStackLayout>
-                    <Label Style="{StaticResource headerNewsItemStyle}" Text="Film Name"/>
-                    <CollectionView ItemsLayout="VerticalGrid, 2"
-                       ItemsSource="{Binding Resources}"
-                       ItemTemplate="{StaticResource ResourceSelector}"/>
-                    <Label Style="{StaticResource textNewsItemStyle}" Text="{Binding Text}"/>
+                    <Label FontSize="Title"
+                           Style="{StaticResource elemNewsItemStyle}"
+                           Text="{Binding Source.Name}"/>
+                    <!--Сделать ссылкой на новость из Url -->
+                    <extensions:HyperlinkLabel
+                        Style="{StaticResource elemNewsItemStyle}"
+                        Text="{Binding Title}"
+                        Url="{Binding Url}">
+                    </extensions:HyperlinkLabel>
+                    <!--<CollectionView ItemsLayout="VerticalGrid, 2"
+                       ItemsSource="{Binding }"
+                       ItemTemplate="{StaticResource ResourceSelector}"/>-->
+                    <Border Style="{StaticResource mediaBorderStyle}">
+                        <Image Style="{StaticResource pictureStyle}" Source="{Binding UrlToImage}" />
+                    </Border>
+
+                    <Label Style="{StaticResource elemNewsItemStyle}"
+                           Text="{Binding Description}"/>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               Style="{StaticResource elemNewsItemStyle}"
+                               Text="{Binding PublishedAt, 
+                                              Converter={StaticResource DateTimeToFancyAgo}}" />
+                        <Label Grid.Column="1"
+                               HorizontalTextAlignment="End"
+                               Style="{StaticResource elemNewsItemStyle}"
+                               Text="{Binding Author}"/>
+                    </Grid>
+                    
+                    
+                    <!--<Label Style="{StaticResource elemNewsItemStyle}"
+                           Text="{Binding Url}" />-->
                 </VerticalStackLayout>
             </Border>
         </DataTemplate>

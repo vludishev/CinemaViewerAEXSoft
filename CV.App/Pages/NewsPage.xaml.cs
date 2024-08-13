@@ -11,5 +11,9 @@ public partial class NewsPage : ContentPage
 		InitializeComponent();
         _viewModel = viewModel;
         BindingContext = _viewModel;
+        Appearing += async (s, e) =>
+        {
+            await _viewModel.InitializeAsync();
+        };
     }
 }
