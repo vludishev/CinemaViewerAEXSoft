@@ -1,7 +1,6 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+﻿
 
-namespace CV.App.APIs.Constants
+namespace Domain.Constants
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Categories

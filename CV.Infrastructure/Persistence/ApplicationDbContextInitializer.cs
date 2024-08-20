@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace CV.Infrastructure
+namespace CV.Infrastructure.Persistence
 {
     public class ApplicationDbContextInitializer
     {

@@ -1,7 +1,4 @@
-﻿using CV.App.APIs.Models;
-using CV.App.Shared.TemplateModels;
-using CV.Infrastructure;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Globalization;
 using System.Net;
@@ -22,7 +19,9 @@ namespace CV.App.APIs
 
         public NewsApiClient()
         {
-            _client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate });
+            _client = new HttpClient(new HttpClientHandler 
+            { AutomaticDecompression = DecompressionMethods.GZip 
+            | DecompressionMethods.Deflate });
             _client.DefaultRequestHeaders.Add("user-agent", "News-API-csharp/0.1");
             _client.DefaultRequestHeaders.Add("x-api-key", newsApiKey);
         }

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using CV.App.Mapper;
 using CV.App.Shared.Models;
-using CV.Infrastructure;
 using CV.Infrastructure.Entities;
+using CV.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 namespace CV.App.Services

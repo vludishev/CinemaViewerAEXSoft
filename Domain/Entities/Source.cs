@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CV.App.APIs.Models
+namespace Domain.Entities
 {
     public class Source
     {

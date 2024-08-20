@@ -4,6 +4,7 @@ using CV.App.Services;
 using CV.App.ViewModels;
 using CV.Infrastructure;
 using CV.Infrastructure.Helpers;
+using CV.Infrastructure.Persistence;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 

@@ -1,11 +1,12 @@
-﻿using CV.App.APIs.Constants;
+﻿
+using Domain.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CV.App.APIs.Models
+namespace Domain.Entities
 {
     internal class ApiResponse
     {

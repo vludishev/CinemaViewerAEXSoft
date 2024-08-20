@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CV.App.APIs.Constants
+namespace Domain.Constants
 {
     public enum ErrorCodes
     {
